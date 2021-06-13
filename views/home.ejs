@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=	">
-    <title><%= title%></title>
+    <title>
+        <%= title%>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
+
 <body>
-    <h1>title is <%= title %></h1> 
+    <header>
+        <div class="fixed">
+            <nav class="nav-menu fixed-top">
+                <div class="nav-container">
+                    <div class="logo">
+                        <a href="#">
+                            <i class="fas fa-home">Logo</i>
+                        </a>
+                    </div>
+                    <div class="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                    <ul class="nav-menu-list">
+
+                        <li class="nav-menu-list-items"><a href="/users/sign-up" class="nav-menu-links"
+                                id="sign-up">SignUP</a></li>
+                        <li class="nav-menu-list-items"><a href="/users/sign-in" class="nav-menu-links"
+                                id="sign-up">SignIn</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+
+    </main>
+    <footer>
+        <div class="footer-container">
+            <p>Copyright (c)</p>
+        </div>
+    </footer>
+    <script  src="/js/script.js"> 
+
+    </script>
 </body>
+
 </html>
