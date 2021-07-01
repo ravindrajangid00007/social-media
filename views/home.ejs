@@ -27,11 +27,18 @@
                         <span class="bar"></span>
                     </div>
                     <ul class="nav-menu-list">
-
-                        <li class="nav-menu-list-items"><a href="/users/sign-up" class="nav-menu-links"
+                        <%if(locals.user) {%>
+                            <li class="nav-menu-list-items"><a href="/users/profile" class="nav-menu-links"
+                                id="sign-up"><%=locals.user.name%></a></li>
+                        <li class="nav-menu-list-items"><a href="/users/logout" class="nav-menu-links"
+                                id="sign-up">logout</a></li>
+                        <% } else {%>
+                            <li class="nav-menu-list-items"><a href="/users/sign-up" class="nav-menu-links"
                                 id="sign-up">SignUP</a></li>
                         <li class="nav-menu-list-items"><a href="/users/sign-in" class="nav-menu-links"
                                 id="sign-up">SignIn</a></li>
+                        <% } %>
+                        
                     </ul>
                 </div>
             </nav>
