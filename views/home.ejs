@@ -18,7 +18,7 @@
                 <div class="nav-container">
                     <div class="logo">
                         <a href="#">
-                            <i class="fas fa-home">Logo</i>
+                            <h1>Doubt solver</h1>
                         </a>
                     </div>
                     <div class="mobile-menu">
@@ -29,32 +29,95 @@
                     <ul class="nav-menu-list">
                         <%if(locals.user) {%>
                             <li class="nav-menu-list-items"><a href="/users/profile" class="nav-menu-links"
-                                id="sign-up"><%=locals.user.name%></a></li>
-                        <li class="nav-menu-list-items"><a href="/users/logout" class="nav-menu-links"
-                                id="sign-up">logout</a></li>
-                        <% } else {%>
-                            <li class="nav-menu-list-items"><a href="/users/sign-up" class="nav-menu-links"
-                                id="sign-up">SignUP</a></li>
-                        <li class="nav-menu-list-items"><a href="/users/sign-in" class="nav-menu-links"
-                                id="sign-up">SignIn</a></li>
-                        <% } %>
-                        
+                                    id="sign-up">
+                                    <%=locals.user.name%>
+                                </a></li>
+                            <li class="nav-menu-list-items"><a href="/users/logout" class="nav-menu-links"
+                                    id="sign-up">logout</a></li>
+                            <% } else {%>
+                                <li class="nav-menu-list-items"><a href="/users/sign-up" class="nav-menu-links"
+                                        id="sign-up">SignUP</a></li>
+                                <li class="nav-menu-list-items"><a href="/users/sign-in" class="nav-menu-links"
+                                        id="sign-up">SignIn</a></li>
+                                <% } %>
+
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
     <main>
-
+        <section class="feed-posts">
+            <form action="/posts/create-post" id="new-post-form" method="POST">
+                <textarea name="content" id="post-text-area" cols="30" rows="3"
+                    placeholder="Type your post here1"></textarea>
+                <input type="submit" value="Post">
+            </form>
+            <div id="posts-list-container">
+                <ul>
+                    <% for(post of posts){ %>
+                        
+                    <li>
+                        <p>
+                            <% if (locals.user && locals.user.id == post.user.id){ %>
+                            <small>
+                                <a href="/posts/destroy/<%= post.id %>">X</a>
+                            </small>
+                            <% } %>
+                            <%= post.content %>
+                            <br>
+                            <small>
+                                <%= post.user.name %>
+                            </small>
+                        </p>
+                        <div class="post-comments">
+                            <% if (locals.user){ %>
+                                <form action="/comments/create" method="POST">
+                                    <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                                    <input type="hidden" name="post" value="<%= post._id %>" >
+                                    <input type="submit" value="Add Comment">
+                                </form>
+        
+                            <% } %>
+        
+                            <div class="post-comments-list">
+                                <ul id="post-comments-<%= post._id %>">
+                                    <% for (comment of post.comments){%>
+                                        
+                                    <p>
+                                        <% if (locals.user && locals.user.id == comment.user.id){ %>
+                                        <small>
+                                            <a href="/comments/destroy/<%= comment.id %>">X</a>
+                                        </small>
+                                        <% } %>
+                                        <%= comment.content %>
+                                        <br>
+                                        <small>
+                                            <%= comment.user.name %>
+                                        </small>
+                                    </p>    
+                                    <%} %>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </li>
+                        
+                    <%} %>
+                </ul>
+            </div>
+        </section>
     </main>
     <footer>
         <div class="footer-container">
             <p>Copyright (c)</p>
         </div>
     </footer>
-    <script  src="/js/script.js"> 
+    <script src="/js/script.js">
 
     </script>
+    <script src="/js/home_post_comments.js"></script>
+    <script src="home_posts.js"></script>
 </body>
 
 </html>

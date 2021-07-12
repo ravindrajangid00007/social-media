@@ -142,9 +142,6 @@ body {
     color: white;
     transition: all 2s; } }
 
-main {
-  height: 100vh;
-  width: 100vw; }
 
 .footer-container {
   height: 100px;
@@ -157,3 +154,6 @@ main {
     font-weight: 600;
     font-size: 2rem;
     color: white; }
+  main {
+      min-height: 100vh;
+  }
